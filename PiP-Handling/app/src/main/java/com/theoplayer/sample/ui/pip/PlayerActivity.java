@@ -95,7 +95,8 @@ public class PlayerActivity extends AppCompatActivity {
         // Coupling the orientation of the device with the fullscreen state.
         // The player will go fullscreen when the device is rotated to landscape
         // and will also exit fullscreen when the device is rotated back to portrait.
-        viewBinding.theoPlayerView.getSettings().setFullScreenOrientationCoupled(true);
+        viewBinding.theoPlayerView.getSettings().setFullScreenOrientationCoupled(false);
+        viewBinding.theoPlayerView.getFullScreenManager().setFullscreenActivity(PopoutPlayerActivity.class);
 
         // Creating a TypedSource builder that defines the location of a single stream source.
         TypedSource.Builder typedSource = TypedSource.Builder

@@ -29,6 +29,15 @@
             </intent-filter>
 
         </activity>
+        <activity
+            android:name=".PopoutPlayerActivity"
+            android:theme="@style/TheoTheme.SplashScreen"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+            android:hardwareAccelerated="true"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true"
+            android:screenOrientation="sensor"
+            tools:targetApi="24" />
 
     </application>
 
