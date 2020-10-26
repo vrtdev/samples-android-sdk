@@ -2,11 +2,15 @@ package com.theoplayer.sample.playback.basic;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.theoplayer.android.api.event.player.PlayerEventTypes;
+import com.theoplayer.android.api.event.player.VolumeChangeEvent;
 import com.theoplayer.android.api.player.Player;
 import com.theoplayer.android.api.source.SourceDescription;
 import com.theoplayer.android.api.source.TypedSource;
@@ -62,8 +66,30 @@ public class PlayerActivity extends AppCompatActivity {
         theoPlayer.addEventListener(PlayerEventTypes.PAUSE, event -> Log.i(TAG, "Event: PAUSE"));
         theoPlayer.addEventListener(PlayerEventTypes.ENDED, event -> Log.i(TAG, "Event: ENDED"));
         theoPlayer.addEventListener(PlayerEventTypes.ERROR, event -> Log.i(TAG, "Event: ERROR, error=" + event.getError()));
+        theoPlayer.addEventListener(PlayerEventTypes.VOLUMECHANGE, event -> logVolumeEvent(event));
     }
 
+    private void logVolumeEvent(VolumeChangeEvent event) {
+        Log.i(TAG, "Event: VOLUMECHANGE, volume=" + event.getVolume());
+        Log.i(TAG, "                     isMuted=" + theoPlayer.isMuted());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        final MenuItem muteItem = menu.add(0, 100, 0, "(UN)MUTE");
+        muteItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == 100) {
+            theoPlayer.setMuted(!theoPlayer.isMuted());
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     // In order to work properly and in sync with the activity lifecycle changes (e.g. device
     // is rotated, new activity is started or app is moved to background) we need to call
