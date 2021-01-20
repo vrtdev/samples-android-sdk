@@ -5,7 +5,7 @@ android {
     buildToolsVersion '29.0.3'
     defaultConfig {
         applicationId 'com.theoplayer.sample.playback.basic'
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName '1.0'
@@ -25,8 +25,9 @@ android {
 
 dependencies {
     implementation 'com.google.android.material:material:1.2.0-alpha05'
+    implementation 'com.google.ads.interactivemedia.v3:interactivemedia:3.21.4'
 
     // THEOplayer required dependencies.
-    implementation ':theoplayer@aar'
+    implementation ':theoplayer-android-dist-899091d6-b188-483d-a2fc-f4eb35d64b6c-2.79.0-minapi21-release@aar'
     implementation 'com.google.code.gson:gson:2.8.5'
 }

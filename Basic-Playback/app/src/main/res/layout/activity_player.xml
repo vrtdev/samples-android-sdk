@@ -12,8 +12,8 @@
             android:id="@+id/toolbarLayout"
             layout="@layout/layout_toolbar" />
 
-        <com.theoplayer.android.api.THEOplayerView
-            android:id="@+id/theoPlayerView"
+        <FrameLayout
+            android:id="@+id/theoPlayerViewHolder"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
